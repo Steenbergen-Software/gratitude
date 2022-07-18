@@ -31,7 +31,7 @@ jobs:
         go-version: 1.18
 
     - name: Build
-      run: go run .\api-go-pgsql\scripts\main.go
+      run: go run ./api-go-pgsql/scripts/main.go
 
 #    - name: Test
 #     run: go test -v ./...
