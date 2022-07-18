@@ -5,7 +5,7 @@ import "fmt"
 // this is a commment
 
 func main() {
-	fmt.Println("Fibonacci sequence:")
+	fmt.Println("10 Fibonacci sequences:")
 	fmt.Println(getFibonacciSequenceAsArray(10))
 }
 
