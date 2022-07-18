@@ -1,12 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
 
-// this is a commment
+	"github.com/Steenbergen-Software/gratitude/api-go-pgsql/api"
+)
+
+const (
+	serverAddress = "0.0.0.0:8080"
+)
 
 func main() {
 	fmt.Println("10 Fibonacci sequences:")
 	fmt.Println(getFibonacciSequenceAsArray(10))
+
+	server := api.NewServer()
+	err := server.Start(serverAddress)
+	if err != nil {
+		log.Fatal("cannot start server: ", err)
+	}
 }
 
 func getFibonacciSequenceAsArray(n int) []uint64 {
