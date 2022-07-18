@@ -12,11 +12,11 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'api-go-pgsql'
+      - 'api-go-pgsql/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'api-go-pgsql'
+      - 'api-go-pgsql/**'
 
 jobs:
 
