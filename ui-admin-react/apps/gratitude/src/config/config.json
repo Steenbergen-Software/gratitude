@@ -1,0 +1,11 @@
+{
+  "apiUrl": "http://localhost:5000/v1",
+  "auth0": {
+    "domain": "steenbergen-software.us.auth0.com",
+    "clientId": "ulwO3zhx2PqMpFs3xtFgpjidMifw370j",
+    "audience": "https://api.gratitude.com",
+    "scope": null,
+    "useBrowserLocalStorageCache": true
+  },
+  "supportEmail": ""
+}

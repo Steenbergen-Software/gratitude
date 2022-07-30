@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "gratitude": "apps/gratitude",
+    "gratitude-e2e": "apps/gratitude-e2e"
+  }
+}
