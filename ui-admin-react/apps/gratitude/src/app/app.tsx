@@ -2,7 +2,7 @@ import { ThemeProvider } from '@mui/material';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { appTheme } from './app.theme';
 import { Shell } from './layout';
-import { Altair, DataDictionary, Home, IntroToGraphql, Login, ReleaseNotes } from './pages';
+import { Altair, DataDictionary, Home, IntroToGraphql, ReleaseNotes } from './pages';
 
 export function App() {
 
@@ -13,7 +13,6 @@ export function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/data-dictionary" element={<DataDictionary />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/api-requests" element={<Navigate to="/api-requests/intro" replace={true} />} />
             <Route path="/api-requests/intro" element={<IntroToGraphql />} />
             <Route

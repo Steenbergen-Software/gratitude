@@ -1,10 +1,10 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth } from './auth';
 import { useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { appSettingsAtom } from '../store';
 
 export function useFetchGraphql() {
-  const { getAccessTokenSilently } = useAuth0();
+  const { getApiToken } = useAuth();
   const appSettings = useRecoilValue(appSettingsAtom);
 
   const [status, setStatus] = useState<{
@@ -18,7 +18,7 @@ export function useFetchGraphql() {
   const fetchGraphql = useCallback(() => {
     return async (text: unknown, variables: unknown = {}) => {
       const apiUrl = appSettings?.apiUrl;
-      const token = await getAccessTokenSilently();
+      const token = await getApiToken();
 
       if (!apiUrl || !token) {
         setStatus({ loading: false, error: new Error(`Unauthorized access.`) });
@@ -46,7 +46,7 @@ export function useFetchGraphql() {
           setStatus({ loading: false, error });
         });
     };
-  }, [appSettings, getAccessTokenSilently])();
+  }, [appSettings, getApiToken])();
 
   return { ...status, fetchGraphql };
 }

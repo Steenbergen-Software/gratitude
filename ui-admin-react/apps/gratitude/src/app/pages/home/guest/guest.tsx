@@ -1,13 +1,13 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { Button, Link, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAuth } from '../../../hooks';
 
 /* eslint-disable-next-line */
 export interface GuestProps {}
 
 export function Guest(props: GuestProps) {
-  const { loginWithRedirect } = useAuth0();
+  const { login } = useAuth();
 
   return (
     <Container>
@@ -16,7 +16,7 @@ export function Guest(props: GuestProps) {
         <br /> <strong>API Docs, Data Dictionaries</strong>
         <br /> <strong>FAQ’s</strong> and more
       </StyledP>
-      <Button onClick={() => loginWithRedirect()} variant="large">
+      <Button onClick={() => login()} variant="large">
         Login
       </Button>
       <Typography>

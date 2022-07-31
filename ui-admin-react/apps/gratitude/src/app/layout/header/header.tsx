@@ -1,10 +1,10 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { AppBar, Button, Link, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { isAuthenticatedState } from '../../store/user';
+import { useAuth } from '../../hooks';
 
 /* eslint-disable-next-line */
 export interface HeaderProps {}
@@ -12,7 +12,7 @@ export interface HeaderProps {}
 export function Header(props: HeaderProps) {
   const isAuthenticated = useRecoilValue(isAuthenticatedState);
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null);
-  const { loginWithRedirect, logout } = useAuth0();
+  const { login, logout } = useAuth();
 
   const accountClickHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setAnchorElement(event.currentTarget);
@@ -24,7 +24,7 @@ export function Header(props: HeaderProps) {
 
   const logoutHandler = () => {
     setAnchorElement(null);
-    logout({ returnTo: window.location.origin });
+    logout();
   };
 
   return (
@@ -73,7 +73,7 @@ export function Header(props: HeaderProps) {
             </Menu>
           </>
         )}
-        {!isAuthenticated && <Link onClick={() => loginWithRedirect()}>Login</Link>}
+        {!isAuthenticated && <Link onClick={() => login()}>Login</Link>}
       </StyledToolbar>
     </AppBar>
   );

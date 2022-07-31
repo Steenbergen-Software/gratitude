@@ -32,11 +32,7 @@ const loadAppSettingsPromise = loadAppSettings();
 
 export const appSettingsAtom = atom<AppSettings | null>({
   key: 'appSettingsAtom',
-  effects: [
-    ({ setSelf }) => {
-      setSelf(loadAppSettingsPromise);
-    },
-  ],
+  default: loadAppSettingsPromise
 });
 
 export const apiUrlState = selector({
