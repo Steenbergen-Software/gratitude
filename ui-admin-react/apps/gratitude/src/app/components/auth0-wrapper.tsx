@@ -7,9 +7,9 @@ import { appSettingsAtom, userAtom } from '../store';
 // before using the auth0 react hooks.
 
 /* eslint-disable-next-line */
-export interface AuthWrapperProps extends PropsWithChildren {}
+export interface Auth0WrapperProps extends PropsWithChildren {}
 
-export function AuthWrapper(props: AuthWrapperProps) {
+export function Auth0Wrapper(props: Auth0WrapperProps) {
   const auth0 = useRecoilValue(appSettingsAtom)?.auth0;
 
   // Using Atom Effect, app will wait until config file is loaded. It can't be null here. Trust me :)
@@ -78,4 +78,4 @@ function Auth0AtomMapper(props: PropsWithChildren) {
 
 }
 
-export default AuthWrapper;
+export default Auth0Wrapper;

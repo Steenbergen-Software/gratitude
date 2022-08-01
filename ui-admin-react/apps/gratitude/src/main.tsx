@@ -3,15 +3,14 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import App from './app/app';
-import Auth0Wrapper from './app/components/auth0-wrapper';
+import { Auth0Wrapper } from './app/components';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 /*
-RecoilRoot node should be first, other components in tree might require state (e.g. auth0 wrapper)
+RecoilRoot node is first element. Other components in tree might require state (e.g. auth0 wrapper)
 Suspense is used when Recoil is async loading default state (application is initializing)
 */
-
 root.render(
   <StrictMode>
     <RecoilRoot>
