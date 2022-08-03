@@ -8,6 +8,28 @@ export interface AuthenticatedProps {}
 export function Authenticated(props: AuthenticatedProps) {
   const supportEmail = useRecoilValue(supportEmailState);
 
+      // Testing management API from SPA:
+    // https://auth0.com/docs/secure/tokens/access-tokens/get-management-api-tokens-for-single-page-applications
+    const loadAdditionalUserData = async (user: User) => {
+      const claims = await getIdTokenClaims();
+      const accessToken = await getAccessTokenWithPopup({
+        audience: 'https://arturo-dev.us.auth0.com/api/v2/',
+        scope: 'read:current_user',
+      });
+
+      console.log(claims, accessToken);
+
+      const res = await fetch('https://arturo-dev.us.auth0.com/api/v2/users/' + user.sub, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      const data = await res.json();
+      console.log('user data', data);
+    };
+
+
   return (
     <div>
       <h1>Welcome</h1>
