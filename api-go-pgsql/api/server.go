@@ -12,6 +12,7 @@ func NewServer() *Server {
 
 	router.POST("/accounts", server.createAccount)
 	router.GET("/accounts/:id", server.getAccount)
+	router.POST("/users", server.createUser)
 
 	server.router = router
 	return server

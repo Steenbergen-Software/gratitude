@@ -1,13 +1,34 @@
-import { Button, Link, Typography } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { useCallback, useState } from 'react';
+import { Box, Button, Link, Modal, Typography } from '@mui/material';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../hooks';
+import { Signup } from './signup/signup';
 
 /* eslint-disable-next-line */
 export interface GuestProps {}
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 export function Guest(props: GuestProps) {
   const { login } = useAuth();
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSignupSuccess = useCallback(() => {
+    setOpen(false);
+    navigate('/signup-complete');
+  }, [navigate]);
 
   return (
     <Container>
@@ -21,9 +42,19 @@ export function Guest(props: GuestProps) {
       </Button>
       <Typography>
         Need to create an account?{' '}
-        <Link component={RouterLink} to="/signup">
+        <Link onClick={() => setOpen(true) }>
           Sign Up
         </Link>
+        <Modal
+          open={open}
+          onClose={() => setOpen(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Signup onSignupComplete={handleSignupSuccess}></Signup>
+          </Box>
+        </Modal>
       </Typography>
     </Container>
   );

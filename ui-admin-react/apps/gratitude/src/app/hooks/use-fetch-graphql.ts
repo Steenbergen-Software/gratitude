@@ -1,4 +1,4 @@
-import { useAuth } from './auth';
+import { useAuth } from './use-auth';
 import { useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { appSettingsAtom } from '../store';
@@ -43,6 +43,7 @@ export function useFetchGraphql() {
           setStatus({ loading: false, data: res.data });
         })
         .catch((error: Error) => {
+          console.log('ERROR', error);
           setStatus({ loading: false, error });
         });
     };
